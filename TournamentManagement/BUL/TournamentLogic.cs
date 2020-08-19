@@ -72,7 +72,7 @@ namespace BUL
 				foreach (MatchupModel rm in round)
 				{
 					// Check to see if there is any entries have a score != 0
-					// if we complete a match, we put the values of two score in
+					// if we complete a match, we put the values of toSore in
 					// If we already scored, we already have a winner, we ignored this stuff
 					if(rm.Winner == null && (rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
 					{
@@ -369,8 +369,13 @@ namespace BUL
 		private static int NumberOfByes(int rounds, int numberOfTeams)
 		{
 			int output = 0;
-			int totalTeams = 1	;
+			int totalTeams = 1;
 
+			// rounds = 2
+			// from 1 -> 2, totalTeams = 4
+			// After ending the for loop, The number of byes is equal to (totalTeams - NumberOFTeams)
+			// 4 - 3 = 1
+			// So we have one byes
 			for(int i = 1; i <= rounds; i++)
 			{
 				totalTeams *= 2;
@@ -383,11 +388,14 @@ namespace BUL
 			int output = 1;
 			int val = 2;
 
+			// if val < teamCount, it means we must have at least 2 team wins in round 1 to open round 2
+			// Return output = 2 (Matchup round is 2)
 			while (val < teamCount)
 			{
 				output += 1;
 				val *= 2;
 			}
+
 			return output;
 		}
 

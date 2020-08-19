@@ -53,6 +53,7 @@ namespace UIL
 		{
 			TeamModel t = (TeamModel)cbSelectTeam.SelectedItem;
 
+			// If t == null, dont do anything
 			if(t != null)
 			{
 				availableTeams.Remove(t);

@@ -277,8 +277,16 @@ namespace DAL
 						// Popluate each matchup(1 model)
 						List<TeamModel> allTeams = Get_All_Teams(); 
 
+						// If we have a winner, insert to winner of the matchup that equals to ID in teamModel
 						if(matchup.WinnerID > 0)
 						{
+							/*foreach(TeamModel t in allTeams)
+							{
+								if(matchup.WinnerID == t.Id)
+								{
+									matchup.Winner = t;
+								}
+							}*/
 							matchup.Winner = allTeams.Where(x => x.Id == matchup.WinnerID).First();
 						}
 
@@ -294,6 +302,7 @@ namespace DAL
 							// Check if we have an ID of parentMatchupID
 							if(me.ParentMatchupID > 0)
 							{
+								// In all the matchups, find the one that has the ID that matched with the parentMatchup
 								me.ParentMatchup = matchups.Where(x => x.Id == me.ParentMatchupID).First();
 							}
 						}
@@ -303,6 +312,7 @@ namespace DAL
 					int currentRound = 1;
 					foreach (MatchupModel matchup in matchups)
 					{
+						// if the matchupRound is 2, greater than 1, then tournament add a new matchup round, currentRow + 1
 						if(matchup.MatchupRound > currentRound)
 						{
 							// t is tournament model
@@ -337,6 +347,7 @@ namespace DAL
 			{
 				var p = new DynamicParameters();
 				
+				// If we have a winner, then update matchup
 				if(model.Winner != null)
 				{
 					p.Add("@id", model.Id);
@@ -347,6 +358,7 @@ namespace DAL
 
 				foreach (MatchupEntryModel me in model.Entries)
 				{
+					// If we have a team competing , then add score to that team
 					if(me.TeamCompeting != null)
 					{
 						p = new DynamicParameters();

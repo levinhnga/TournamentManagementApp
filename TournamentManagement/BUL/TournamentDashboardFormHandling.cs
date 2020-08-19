@@ -9,6 +9,7 @@ namespace BUL
 {
 	public class TournamentDashboardFormHandling
 	{
+		// Get all tournaments from db
 		public List<TournamentModel> Get_All_Tournaments()
 		{
 			List<TournamentModel> T = DAL.GlobalConfig.Connection.Get_All_Tournaments();

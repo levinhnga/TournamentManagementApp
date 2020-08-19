@@ -10,15 +10,12 @@ namespace BUL
 {
     public class CreatePrizeBUL
     {
-
-        public CreatePrizeBUL(string placeName, int placeNumber, decimal prizeAmount, double prizePercentage)
-		{
-            
-        }
+        // Constructor
+        public CreatePrizeBUL(string placeName, int placeNumber, decimal prizeAmount, double prizePercentage) { }	
 
         public CreatePrizeBUL() { }
 
-
+        // Insert a prize into database 
         public PrizeModel CreatePrize(string placeName, int placeNumber, decimal prizeAmount, float prizePercentage)
 		{
             PrizeModel model = new PrizeModel();

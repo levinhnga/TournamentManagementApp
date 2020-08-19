@@ -11,7 +11,7 @@ namespace BUL
 	{
         public CreateTeamFormHandling() { }
         
-
+        // Insert a person
         public PersonModel CreatePerson(string firstName, string lastName, string emailAddress, string phoneNumber)
 		{
             PersonModel model = new PersonModel();
@@ -33,11 +33,14 @@ namespace BUL
             */
         }
 
+        // Get all the members in team
         public List<PersonModel> Select_All_Persons()
         {
             List<PersonModel> output = DAL.GlobalConfig.Connection.Get_All_Persons();
             return output;
         }
+
+        // Insert a team into db
 
         public TeamModel CreateTeam(TeamModel team_from_UI)
 		{
